@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-list',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  heroes: any[] = [];
 
-  constructor() { }
+  constructor(private heroService: ApiService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.heroService.getHeroes().subscribe((data) => {
+      this.heroes = data;
+    });
   }
 
 }
