@@ -1,13 +1,27 @@
-<h2>Heroes</h2>
-<ul>
-  <li *ngFor="let hero of heroes">
-    <strong>Name:</strong> {{ hero.name }}<br>
-    <strong>Power:</strong> {{ hero.power }}<br>
-    <strong>Stats:</strong>
-    <ul>
-      <li *ngFor="let stat of hero.stats">
-        {{ stat.key }}: {{ stat.value }}
-      </li>
-    </ul>
-  </li>
-</ul>
+<div class="List">
+  <h2 class="heading">Tour of Heroes</h2>
+ <table class="Table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Power</th>
+        <th>Stat Int</th>
+        <th>Stat Strength</th>
+        <th>Stat Stamina</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hero of heroes">
+        <td>{{ hero.name }}</td>
+        <td>{{ hero.power }}</td>
+        <td>{{ getStatValue(hero.stats, 'strength') }}</td>
+        <td>{{ getStatValue(hero.stats, 'intelligence') }}</td>
+        <td>{{ getStatValue(hero.stats, 'stamina') }}</td>
+        <td><button (click)="evolve(hero.name)">Evolve {{ hero.name }}</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

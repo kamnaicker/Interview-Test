@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace InterviewTest.Controllers
 {
@@ -41,9 +42,50 @@ namespace InterviewTest.Controllers
         }
 
         // POST: api/Heroes
-        [HttpPost]
-        public void Post([FromBody] string value)
+        //refactored Post method to accept a JObject instead of string values
+        //changed the return type to IActionResult to allow for more flexibility in the response
+        [HttpPost]        
+        public IActionResult Post([FromBody] JObject data)
         {
+            if (data == null)
+            {
+                return BadRequest("Invalid JSON data in the request body.");
+            }
+
+            // Extract the values from the JSON data
+            string action = data["action"]?.ToString();
+            string name = data["name"]?.ToString();
+
+            if (string.IsNullOrEmpty(action) || string.IsNullOrEmpty(name))
+            {
+                return BadRequest("Action or name is not specified.");
+            }
+
+            //Assuming that name is unique, find the hero with the specified name
+            Hero heroToEvolve = heroes.FirstOrDefault(hero => hero.name == name);
+
+            if (heroToEvolve != null)
+            {
+                if (action.ToLower() == "evolve")
+                {
+                    heroToEvolve.evolve(1);
+                    for(int i = 0; i<this.heroes.Length;i++)
+                    {
+                        if (this.heroes[i].name == heroToEvolve.name)
+                        {
+                            this.heroes[i] = heroToEvolve;
+                        }
+                    }
+                    return Ok(this.heroes); // Return the evolved hero
+                }
+                else
+                {
+                    return BadRequest("Action is not valid.");
+                }
+            }
+
+            // If the hero is not found, return a 404 response.
+            return NotFound($"Hero with name '{name}' not found.");
         }
 
         // PUT: api/Heroes/5

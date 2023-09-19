@@ -1,0 +1,10 @@
+.List{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.List h2{
+    align-self: center;
+    color: blue;
+}
