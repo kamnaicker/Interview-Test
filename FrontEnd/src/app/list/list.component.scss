@@ -4,7 +4,84 @@
     row-gap: 1rem;
 }
 
-.List h2{
+.heading,.sub-heading{
     align-self: center;
     color: blue;
+}
+
+.sub-heading{
+    color:black;
+}
+
+button{
+    background: none;
+    padding: 10%;
+    border-style: none;
+    background-color: rgb(247, 206, 206);
+    border-radius: 1rem;
+}
+
+.Table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Roboto', sans-serif; /* Use a modern font */
+  }  
+  
+  .Table th,
+  .Table td {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .Table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+  }
+ 
+  .Table tbody tr:hover {
+    background-color: #e0e0e0;
+    color: black;
+    transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+  }
+  
+  .Table td {
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Slight box shadow for cells */
+  }
+
+  td.action{
+    text-align: center;
+  }
+  
+
+.red{
+
+    font-weight: 300;
+    background-color: red;
+    color: black;
+
+}
+.orange{
+
+    font-weight: 500;
+    background-color: orange;
+    color: rgb(252, 252, 252);
+
+}
+.cyan{
+
+    font-weight: bold;
+    background-color: cyan;
+    color: purple;
+
+}
+.lime{
+
+    font-weight: bolder;
+    background-color: lime;
+    color: brown;
+
 }

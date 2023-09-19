@@ -1,24 +1,25 @@
 <div class="List">
   <h2 class="heading">Tour of Heroes</h2>
+  <p class="sub-heading">Select a hero to evolve</p>
  <table class="Table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Power</th>
-        <th>Stat Int</th>
         <th>Stat Strength</th>
+        <th>Stat Intelligence</th>
         <th>Stat Stamina</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let hero of heroes">
+      <tr class="lime" *ngFor="let hero of heroes">
         <td>{{ hero.name }}</td>
         <td>{{ hero.power }}</td>
         <td>{{ getStatValue(hero.stats, 'strength') }}</td>
         <td>{{ getStatValue(hero.stats, 'intelligence') }}</td>
         <td>{{ getStatValue(hero.stats, 'stamina') }}</td>
-        <td><button (click)="evolve(hero.name)">Evolve {{ hero.name }}</button></td>
+        <td class="action"><button (click)="evolve(hero.name)">Evolve {{ hero.name }}</button></td>
       </tr>
     </tbody>
   </table>
